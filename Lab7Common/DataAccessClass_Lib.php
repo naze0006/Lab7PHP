@@ -15,6 +15,20 @@ class DataAccessObject {
     function __destruct() {
         $this->pdo = null;
     }
+    
+    public function getAccebility() {
+        $sql ="SELECT Accessibility_Code, Description FROM Accessibility";
+         $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $access = array();
+        foreach ($stmt as $row) {
+            $accessibility = new Accessibility($row['Accessibility_Code'], $row['Description']);
+            $access[]= $accessibility;
+        }
+    return $access;
 }
+}
+
+
  
 ?>

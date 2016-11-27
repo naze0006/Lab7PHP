@@ -16,13 +16,13 @@
       ?>
       <div class="container-fluid">
             <div class="row vertical-margin">
-                <div class="col-md-12">
+                <div class="col-sm-8 text-center">
                     <h2>Log In</h2>
                 </div>          
             </div>
             <div class="row vertical-margin">
-                <div class="col-md-12">
-                    <p>you need to sign up if you are a new user</p>
+                <div class="col-sm-6 text-center">
+                    <p>You need to sign up if you are a new user</p>
                 </div>          
             </div>
             
