@@ -13,6 +13,84 @@
         include_once "./Lab7Common/EntityClass_Lib.php";
         include_once "./Lab7Common/DataAccessClass_Lib.php";
         include "./Lab7Common/Function_Lib.php";
+        include "./Lab7Common/Constants.php";
+
+
+        session_start();
+        $dao = new DataAccessObject(INI_FILE_PATH);
+
+        if (isset($_POST["btnSubmit"])) {
+            $userId = trim($_POST["id"]);
+            $userName = trim($_POST["name"]);
+            $phone = trim($_POST["phone"]);
+            $pass = trim($_POST["password"]);
+            $passAgain = trim($_POST["passwordAgain"]);
+            $hashedPassword = sha1($pass);
+            $userIdValidateError = validateUserId($userId);
+            $nameValidateError = validateName($userName);
+            $phoneValidateError = validatePhone($phone);
+            $passValidateError = validatePassword($pass);
+            $passAgainValidateError = validatePasswordAgain($passAgain);
+
+            $userExistValidateError = $dao->userExists($userId);
+
+            $errorlist = [];
+
+            if (strlen($nameValidateError) > 0) {
+                array_push($errorlist, $nameValidateError);
+            }
+            if (strlen($userIdValidateError) > 0) {
+                array_push($errorlist, $userIdValidateError);
+            }
+            if (strlen($phoneValidateError) > 0) {
+                array_push($errorlist, $phoneValidateError);
+            }
+            if (strlen($passValidateError) > 0) {
+                array_push($errorlist, $passValidateError);
+            }
+            if (strlen($passAgainValidateError) > 0) {
+                array_push($errorlist, $passAgainValidateError);
+            }
+
+
+            $exists = $dao->userExists($userId);
+            if (!$exists) {
+
+                if (count($errorlist) <= 0) {
+
+                    $_SESSION["name"] = $userName;
+                    $_SESSION["id"] = $userId;
+                    $_SESSION["phone"] = $phone;
+                    $_SESSION["password"] = $pass;
+                    $_SESSION["Login"] = true;
+                    $dao->saveUser($userId, $userName, $phone, $hashedPassword);
+
+                    $user= $dao->getUserByIdAndPassword($userId, $hashedPassword);
+                    $_SESSION["user"] = $user;
+
+                    header("Location: AddAlbum.php");
+                    exit();
+                }
+            } else {
+                array_push($errorlist, $userExistValidateErrorExistValidateError); // needs to be improved
+            }
+        }
+        if (isset($_POST["btnClear"])) {
+            $_SESSION["name"] = false;
+            $_SESSION["id"] = false;
+            $_SESSION["phone"];
+            $_SESSION["password"];
+            $userName = "";
+            $userId = "";
+            $phone = "";
+            $pass = "";
+
+
+            unset($_SESSION["name"]);
+            unset($_SESSION["id"]);
+            unset($_SESSION["phone"]);
+            unset($_SESSION["password"]);
+        }
         ?>
 
         <div class="container-fluid">
@@ -30,17 +108,17 @@
             <br/>
             <form class="form-horizontal" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="id">Student ID:</label>
+                    <label class="control-label col-sm-2" for="id">User ID:</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" id="id" name="id" 
-                               value="<?php print $stdId ?>"/><span style="color:red"><?php print $studentIdValidateError ?></span>
+                               value="<?php print $userId ?>"/><span style="color:red"><?php print $userIdValidateError ?></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label col-sm-2" for="name">Name:</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" id="name" name="name" 
-                               value="<?php print $stdName ?>"/><span style="color:red"><?php print $nameValidateError ?></span>
+                               value="<?php print $userName ?>"/><span style="color:red"><?php print $nameValidateError ?></span>
                     </div>
                 </div>
                 <div class="form-group" >
@@ -79,6 +157,6 @@
 
     </body>
 </html>
-    <?php
-    include './Lab7Common/Footer.php';
-    ?>
+<?php
+include './Lab7Common/Footer.php';
+?>

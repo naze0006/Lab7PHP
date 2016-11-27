@@ -20,6 +20,42 @@ class Accessibility{
    
 }
 
+class User{
+  private $userId;  
+  private $name;
+  private $phone;
+  private $password;
+  
+  function __construct($userId, $name, $phone) {
+      $this->userId = $userId;
+      $this->name = $name;
+      $this->phone = $phone;
+      
+  }
+  
+  function getUserId() {
+      return $this->userId;
+  }
+
+  function getName() {
+      return $this->name;
+  }
+
+  function getPhone() {
+      return $this->phone;
+  }
+
+  function getPassword() {
+      return $this->password;
+  }
+
+
+
+  
+    
+    
+}
+
 
 
 

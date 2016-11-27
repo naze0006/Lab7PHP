@@ -13,6 +13,7 @@
         include_once "./Lab7Common/EntityClass_Lib.php";
         include_once "./Lab7Common/DataAccessClass_Lib.php";
         include "./Lab7Common/Function_Lib.php";
+        include "./Lab7Common/Constants.php";
         ?>
         <div class="container-fluid">
             <div class="row vertical-margin">

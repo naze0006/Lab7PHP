@@ -15,20 +15,58 @@ class DataAccessObject {
     function __destruct() {
         $this->pdo = null;
     }
-    
+
     public function getAccebility() {
-        $sql ="SELECT Accessibility_Code, Description FROM Accessibility";
-         $stmt = $this->pdo->prepare($sql);
+        $sql = "SELECT Accessibility_Code, Description FROM Accessibility";
+        $stmt = $this->pdo->prepare($sql);
         $stmt->execute();
         $access = array();
         foreach ($stmt as $row) {
             $accessibility = new Accessibility($row['Accessibility_Code'], $row['Description']);
-            $access[]= $accessibility;
+            $access[] = $accessibility;
         }
-    return $access;
-}
+        return $access;
+    }
+    
+    public function saveUser($userId, $name, $phone, $password){
+        $sql = "INSERT INTO User VALUES( :userId, :name, :phone, :password)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['userId' => $userId, 'name' => $name, 'phone' => $phone, 'password' => $password]); 
+        
+    }
+    
+     public function userExists($userId) {
+        $sql = "SELECT COUNT(UserId) AS num FROM User WHERE UserId = :userId";
+        $stmt = $this->pdo->prepare($sql);
+
+        //Bind the provided username to our prepared statement.
+        $stmt->bindValue(':userId', $userId);
+
+        //Execute.
+        $stmt->execute();
+
+        //Fetch the row.
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($row['num'] > 0) {
+            die("The User ID already exists!");
+        }
+    }
+    
+     public function getUserByIdAndPassword($userId, $password) {
+        $user = null;
+        $sql = "SELECT UserId, Name, Phone FROM Student WHERE UserId = :userId AND Password = :password";
+
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['userId' => $userId, 'password' => $password]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($row) {
+            $user = new User($row['UserId'], $row['Name'], $row['Phone']);
+            
+        }
+        return $user;
+    }
 }
 
-
- 
 ?>
