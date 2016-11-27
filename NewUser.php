@@ -13,19 +13,20 @@
         include_once "./Lab7Common/EntityClass_Lib.php";
         include_once "./Lab7Common/DataAccessClass_Lib.php";
         include "./Lab7Common/Function_Lib.php";
-      ?>
-      <div class="container-fluid">
+        ?>
+
+        <div class="container-fluid">
             <div class="row vertical-margin">
                 <div class="col-md-12">
-                    <h2>Log In</h2>
+                    <h2 class="text-left">Sign Up</h2>
                 </div>          
             </div>
             <div class="row vertical-margin">
                 <div class="col-md-12">
-                    <p>you need to sign up if you are a new user</p>
+                    <p>All fields are required</p>
                 </div>          
             </div>
-            
+
             <br/>
             <form class="form-horizontal" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                 <div class="form-group">
@@ -35,8 +36,21 @@
                                value="<?php print $stdId ?>"/><span style="color:red"><?php print $studentIdValidateError ?></span>
                     </div>
                 </div>
-                
-                
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="name">Name:</label>
+                    <div class="col-sm-4">
+                        <input type="text" class="form-control" id="name" name="name" 
+                               value="<?php print $stdName ?>"/><span style="color:red"><?php print $nameValidateError ?></span>
+                    </div>
+                </div>
+                <div class="form-group" >
+                    <label class="control-label col-sm-2" for="phone">Phone Number: </label>
+                    <div class="col-sm-4">
+                        <input class="form-control col-sm-4" type="text" id="phone" name="phone" 
+                               value="<?php print $phone ?>"/><span style="color:red"><?php print $phoneValidateError ?></span>
+                    </div>
+
+                </div>
                 <div class="form-group" >
                     <label class="control-label col-sm-2" for="password" >Password: </label>  
                     <div class="col-sm-4">
@@ -44,24 +58,27 @@
                     </div> 
 
                 </div>
-                
-                
+
+                <div class="form-group" >
+                    <label class="control-label col-sm-2" for="passwordAgain" >Password Again: </label>  
+                    <div class="col-sm-4">
+                        <input class="form-control col-sm-4" type="password" id="passwordAgain" name="passwordAgain" value="<?php print $passAgain ?>"><span style="color:red"><?php print $passAgainValidateError ?></span>  
+                    </div> 
+
+                </div>
                 <br/>
-              
+
                 <div class="col-sm-6">
-                    <input class="btn btn-primary" type = "submit" name="submit" value = "Submit" class="button" />
+                    <input class="btn btn-primary" type = "submit" name="btnSubmit" value = "Submit" class="button" />
                     <button class="btn btn-primary" type="reset" name="btnClear" value="Reset" class="button">Clear</button>
                 </div>
-
             </form>
-        
-      </div>
-    </body>
-</html>  
-        
+
+        </div>
+
+
     </body>
 </html>
-        <?php
-        include './Lab7Common/Footer.php';
-        
-        ?>
+    <?php
+    include './Lab7Common/Footer.php';
+    ?>

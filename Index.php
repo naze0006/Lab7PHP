@@ -13,7 +13,24 @@
         include_once "./Lab7Common/EntityClass_Lib.php";
         include_once "./Lab7Common/DataAccessClass_Lib.php";
         include "./Lab7Common/Function_Lib.php";
-      
+        ?>
+        <div class="container-fluid">
+            <div class="row vertical-margin">
+                <div class="col-md-12">
+            <h1>Welcome to Algonquin Sociaal Media Website!</h1>
+                </div>
+            </div>
+            <div class="row vertical-margin">
+                <div class="col-md-12">
+                    <p>If you have never used this before you have to <a href="NewUser.php" >sign up</a> first.</p>
+                    <p>If you have already signed up, you can <a href="Login.php" >log in</a> now.</p>
+                </div>          
+            </div>
+            
+        </div>
+
+    </body>
+</html>
+        <?php
         include './Lab7Common/Footer.php';
-        
         ?>
