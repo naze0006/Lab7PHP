@@ -29,12 +29,12 @@
         $albums = $dao->getAllAlbums();
         ?>
 
-        <div class="container-fluid">
+        <div class="container">
             <div class="row vertical-margin text-center">
                 <h2>My Albums</h2>
             </div>
             <div class="row vertical-margin">
-                <div class="col-sm-10">
+                <div class="col-md-3">
                     <p>Welcome <?php print $user->getName(); ?>! (not you? Change <a href="Login.php"> user </a>here)</p>
                 </div>
             </div>
@@ -43,7 +43,7 @@
             </div>
             <div class="row vertical-margin">
                     <div class="col-md-12">
-                        <table class="table-bordered col-md-12 col-sm-10 col-lg-10">
+                        <table class="table">
                             <tr>
                                 <th>Title</th>
                                 <th>Date Updated</th>
@@ -56,20 +56,22 @@ for ($i=0; $i<count($albums); $i++){
                                     $date = $albums[$i]->getDate_updated();
                                     $numOfPics = 0;
                                     $access = $albums[$i]->getAccessibility_code();
+                                    
+                                    
                                     ?>
                             
                             <tr>
                                 <td><a href="MyPictures.php"><?php print $title; ?></a></td>
                                 <td><?php print $date; ?></td>
                                 <td><?php print $numOfPics ?></td>
-                                <td><select>
+                                <td><select class="form-control">
                                         <option selected value="<?php $access ?>"><?php print $access; ?></option>
                                         <?php
 foreach ($accessibility as $accessType) {
     $description = $accessType->getDescription();
     $code = $accessType->getAccessibilityCode();
     if($code != $access){
-       print "<option value='$code'> $code </option>"; 
+       print "<option value='$code'> $description </option>"; 
     }
     
 }

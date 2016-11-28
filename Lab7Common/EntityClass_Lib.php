@@ -26,6 +26,22 @@ class User{
   private $phone;
   private $password;
   
+  private $albums;
+  private $friends;
+  private $friendrequests;
+  function getAlbums() {
+      return $this->albums;
+  }
+
+  function getFriends() {
+      return $this->friends;
+  }
+
+  function getFriendrequests() {
+      return $this->friendrequests;
+  }
+
+    
   function __construct($userId, $name, $phone) {
       $this->userId = $userId;
       $this->name = $name;
@@ -50,13 +66,19 @@ class User{
   }
 
 
+function getSharedAlbums(){
+    
+}
 
-  
+function addFriend($friend){
+    
+}
     
     
 }
 
 class Album{
+    private $albumId;
     private $title;
     private $description;
     private $date_updated;
@@ -100,12 +122,39 @@ class Album{
         $this->description = $description;
     }
     
+    //public function _toString();
+    
+    
     
 
 
     
     
     
+    
+}
+
+class Picture
+{
+  private $pictureId;
+private $title;
+private $description;
+private $dateUploaded;
+private $fileName;
+
+private $comments;
+
+function __construct($pictureId, $title, $description, $fileName) {
+    $this->pictureId = $pictureId;
+    $this->title = $title;
+    $this->description = $description;
+    $this->fileName = $fileName;
+   
+}
+
+    
+}
+Class Comment{
     
 }
 

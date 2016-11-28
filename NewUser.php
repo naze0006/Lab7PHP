@@ -68,7 +68,7 @@
                     $user= $dao->getUserByIdAndPassword($userId, $hashedPassword);
                     $_SESSION["user"] = $user;
 
-                    header("Location: AddAlbum.php");
+                    header("Location: MyAlbums.php");
                     exit();
                 }
             } else {

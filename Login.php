@@ -68,7 +68,7 @@
 
         }
         ?>
-        <div class="container-fluid">
+        <div class="container">
             <div class="row vertical-margin">
                 <div class="col-sm-8 text-center">
                     <h2>Log In</h2>

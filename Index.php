@@ -18,7 +18,7 @@
         <div class="container-fluid">
             <div class="row vertical-margin">
                 <div class="col-md-12">
-            <h1>Welcome to Algonquin Sociaal Media Website!</h1>
+            <h3>Welcome to Algonquin Sociaal Media Website!</h3>
                 </div>
             </div>
             <div class="row vertical-margin">

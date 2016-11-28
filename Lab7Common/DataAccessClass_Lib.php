@@ -1,6 +1,7 @@
 <?php
 
 include_once 'EntityClass_Lib.php';
+include_once 'Constants.php';
 
 class DataAccessObject {
 
@@ -27,6 +28,12 @@ class DataAccessObject {
         }
         return $access;
     }
+    
+    public function getAlbumForUser($user){}
+    
+public function saveFriendRequest($user, $request) {
+    
+}
     
     public function saveUser($userId, $name, $phone, $password){
         $sql = "INSERT INTO User VALUES( :userId, :name, :phone, :password)";
