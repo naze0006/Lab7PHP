@@ -13,8 +13,62 @@
         include_once "./Lab7Common/EntityClass_Lib.php";
         include_once "./Lab7Common/DataAccessClass_Lib.php";
         include "./Lab7Common/Function_Lib.php";
-      ?>
-      <div class="container-fluid">
+
+        include "./Lab7Common/Constants.php";
+
+        session_start();
+        extract($_POST);
+
+        $dao = new DataAccessObject(INI_FILE_PATH);
+
+        if (isset($_POST["btnsubmit"])) {
+
+        $userId = trim($_POST["id"]);
+        $pass = trim($_POST["password"]);
+        $hashedpass =  sha1($pass);
+        $user = $dao->getUserByIdAndPassword($userId, $hashedpass);
+        $userIdValidateError = validateUserId($userId);
+        $passValidateError = validatePassword($pass);
+        $loginError='';
+        $errorlist = [];
+
+        if (strlen($userIdValidateError) > 0) {
+        array_push($errorlist, $nameValidateError);
+        }
+
+        if (strlen($passValidateError) > 0) {
+        array_push($errorlist, $passValidateError);
+        }
+
+        $validateUser = $dao->getUserByIdAndPassword($userId, $hashedpass);
+        if($validateUser != null)
+        {
+
+        if (count($errorlist) <= 0){
+
+        $_SESSION["user"] = $user;
+        header("Location: AddAlbum.php");
+        exit();
+
+        }
+        }
+        else
+        {
+        $loginError = "Login and password do not match!";
+        }
+
+        }
+        if(isset($_POST["btnClear"]))
+        {
+        $_SESSION["id"] = false;
+        $stdId = "";
+        $pass = "";
+        unset($_SESSION["id"]);
+        
+
+        }
+        ?>
+        <div class="container-fluid">
             <div class="row vertical-margin">
                 <div class="col-sm-8 text-center">
                     <h2>Log In</h2>
@@ -23,20 +77,21 @@
             <div class="row vertical-margin">
                 <div class="col-sm-6 text-center">
                     <p>You need to sign up if you are a new user</p>
+                    <p style="color: red"><?php print $loginError; ?></p>
                 </div>          
             </div>
-            
+
             <br/>
             <form class="form-horizontal" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="id">Student ID:</label>
+                    <label class="control-label col-sm-2" for="id">User ID:</label>
                     <div class="col-sm-4">
                         <input type="text" class="form-control" id="id" name="id" 
-                               value="<?php print $stdId ?>"/><span style="color:red"><?php print $studentIdValidateError ?></span>
+                               value="<?php print $userId ?>"/><span style="color:red"><?php print $userIdValidateError ?></span>
                     </div>
                 </div>
-                
-                
+
+
                 <div class="form-group" >
                     <label class="control-label col-sm-2" for="password" >Password: </label>  
                     <div class="col-sm-4">
@@ -44,24 +99,23 @@
                     </div> 
 
                 </div>
-                
-                
+
+
                 <br/>
-              
+
                 <div class="col-sm-6">
-                    <input class="btn btn-primary" type = "submit" name="submit" value = "Submit" class="button" />
+                    <input class="btn btn-primary" type = "submit" name="btnsubmit" value = "Submit" class="button" />
                     <button class="btn btn-primary" type="reset" name="btnClear" value="Reset" class="button">Clear</button>
                 </div>
 
             </form>
-        
-      </div>
+
+        </div>
     </body>
 </html>  
-        
-    </body>
+
+</body>
 </html>
-        <?php
-        include './Lab7Common/Footer.php';
-        
-        ?>
+<?php
+include './Lab7Common/Footer.php';
+?>

@@ -55,7 +55,7 @@ class DataAccessObject {
     
      public function getUserByIdAndPassword($userId, $password) {
         $user = null;
-        $sql = "SELECT UserId, Name, Phone FROM Student WHERE UserId = :userId AND Password = :password";
+        $sql = "SELECT UserId, Name, Phone FROM User WHERE UserId = :userId AND Password = :password";
 
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute(['userId' => $userId, 'password' => $password]);
@@ -66,6 +66,28 @@ class DataAccessObject {
             
         }
         return $user;
+    }
+    
+    
+    public function saveAlbum($title,$description, $accessibility_code, $owner_id){
+        
+        $sql = "INSERT INTO Album(Title, Description, Accessibility_Code, Owner_Id) Values(:title, :description, :accessibility_code, :owner_id)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['title'=>$title, 'description'=>$description, 'accessibility_code'=>$accessibility_code,
+            'owner_id'=>$owner_id]);
+        
+    }
+    
+    public function getAllAlbums() {
+        $albums = array();
+        $sql='SELECT Title, Description, Date_Updated, Accessibility_Code, Owner_Id FROM Album';
+        $stmt = $this->pdo->prepare($sql);
+         $stmt->execute();
+        foreach ($stmt as $row) {
+            $album = new Album($row['Title'], $row['Description'], $row['Date_Updated'], $row[Owner_Id], $row['Accessibility_Code']);
+            $albums[] = $album;
+        }
+        return $albums;
     }
 }
 

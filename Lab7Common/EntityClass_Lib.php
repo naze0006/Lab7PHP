@@ -56,6 +56,59 @@ class User{
     
 }
 
+class Album{
+    private $title;
+    private $description;
+    private $date_updated;
+    private $owner_id;
+    private $accessibility_code;
+    private $pictures;
+    
+    function __construct($title, $description, $date_updated, $owner_id, $accessibility_code) {
+        $this->title = $title;
+        $this->description = $description;
+        $this->date_updated = $date_updated;
+        $this->owner_id = $owner_id;
+        $this->accessibility_code = $accessibility_code;
+        $this->pictures = array();
+    }
+
+    function getTitle() {
+        return $this->title;
+    }
+
+    function getDescription() {
+        return $this->description;
+    }
+    function getPictures() {
+        return $this->pictures;
+    }
+
+        function getDate_updated() {
+        return $this->date_updated;
+    }
+
+    function getOwner_id() {
+        return $this->owner_id;
+    }
+
+    function getAccessibility_code() {
+        return $this->accessibility_code;
+    }
+
+    function setDescription($description) {
+        $this->description = $description;
+    }
+    
+    
+
+
+    
+    
+    
+    
+}
+
 
 
 
