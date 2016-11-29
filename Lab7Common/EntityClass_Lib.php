@@ -4,19 +4,17 @@ class Accessibility {
 
     private $accessibilityCode;
     private $description;
-    private $longDescription;
 
-    public function __construct($accessibilityCode, $description, $longDescription = null) {
+    function __construct($accessibilityCode, $description) {
         $this->accessibilityCode = $accessibilityCode;
         $this->description = $description;
-        $this->longDescription = $longDescription;
     }
 
-    public function getAccessibilityCode() {
+    function getAccessibilityCode() {
         return $this->accessibilityCode;
     }
 
-    public function getDescription() {
+    function getDescription() {
         return $this->description;
     }
 
@@ -32,33 +30,29 @@ class User {
     private $friends;
     private $friendrequesters;
 
-    public function __construct($userId, $name, $phone) {
+    function __construct($userId, $name, $phone) {
         $this->userId = $userId;
         $this->name = $name;
         $this->phone = $phone;
-
-        $this->albums = array();
-        $this->friends = array();
-        $this->friendrequesters = array();
     }
 
-    public function getUserId() {
+    function getUserId() {
         return $this->userId;
     }
 
-    public function getName() {
+    function getName() {
         return $this->name;
     }
 
-    public function getPhone() {
+    function getPhone() {
         return $this->phone;
     }
 
-    public function getPassword() {
+    function getPassword() {
         return $this->password;
     }
 
-    public function getSharedAlbums() {
+    function getSharedAlbums() {
         $sharedAlbums = array();
         foreach ($this->albums as $album) {
             if ($album->getAccessibilityCode() == 'shared') {
@@ -68,49 +62,49 @@ class User {
         }
     }
 
-    public function getAlbums() {
+    function getAlbums() {
         return $this->albums;
     }
 
-    public function setAlbums($albums) {
+    function setAlbums($albums) {
         $this->albums = $albums;
     }
 
-    public function getAlbumById($albumId) {
+    function getAlbumById($albumId) {
         
     }
 
-    public function addFriend($friend) {
+    function addFriend($friend) {
         $this->friends[$frind->getUserId()] = $friend;
     }
 
-    public function defriend($friend) {
+    function defriend($friend) {
         
     }
 
-    public function isFriend($userId) {
+    function isFriend($userId) {
         
     }
 
-    public function getFriends() {
+    function getFriends() {
         return $this->friends;
     }
 
-    public function setFriends($friends) {
+    function setFriends($friends) {
         $this->friends = $friends;
     }
 
-    public function getFriendrequesters() {
+    function getFriendrequesters() {
         return $this->friendrequesters;
     }
-
-    public function setFriendrequesters($friendrequesters) {
+    function setFriendrequesters($friendrequesters) {
         $this->friendrequesters = $friendrequesters;
     }
+    
+    function isRequestedBy($userId){}
+    
 
-    public function isRequestedBy($userId) {
-        
-    }
+
 
 }
 
@@ -124,7 +118,7 @@ class Album {
     private $accessibility_code;
     private $pictures;
 
-    public function __construct($title, $description, $date_updated, $owner_id, $accessibility_code) {
+    function __construct($title, $description, $date_updated, $owner_id, $accessibility_code) {
         $this->title = $title;
         $this->description = $description;
         $this->date_updated = $date_updated;
@@ -133,58 +127,39 @@ class Album {
         $this->pictures = array();
     }
 
-    public function getTitle() {
+    function getTitle() {
         return $this->title;
     }
 
-    public function getAlbumId() {
+    function getAlbumId() {
         return $this->albumId;
     }
 
-    public function getDescription() {
+    function getDescription() {
         return $this->description;
     }
 
-    public function getPictures() {
+    function getPictures() {
         return $this->pictures;
     }
 
-    function setPictures($pictures) {
-        $this->pictures = $pictures;
-    }
-
-    public function getDate_updated() {
+    function getDate_updated() {
         return $this->date_updated;
     }
 
-    public function getOwner_id() {
+    function getOwner_id() {
         return $this->owner_id;
     }
 
-    public function getAccessibility_code() {
+    function getAccessibility_code() {
         return $this->accessibility_code;
     }
 
-    public function setAccessibility_code($accessibility_code) {
-        $this->accessibility_code = $accessibility_code;
-    }
-
-    public function setDescription($description) {
+    function setDescription($description) {
         $this->description = $description;
     }
 
-    public function addPicture($picture) {
-        
-    }
-
-    public function deletePicture($picture) {
-        
-    }
-
-    public function __toString() {
-        
-    }
-
+    //public function _toString();
 }
 
 class Picture {
@@ -196,93 +171,17 @@ class Picture {
     private $fileName;
     private $comments;
 
-    public function __construct($title, $description, $fileName, $pictureId = null) {
+    function __construct($pictureId, $title, $description, $fileName) {
         $this->pictureId = $pictureId;
         $this->title = $title;
         $this->description = $description;
         $this->fileName = $fileName;
-
-        $this->comments = array();
-    }
-
-    function getPictureId() {
-        return $this->pictureId;
-    }
-
-    function setPictureId($pictureId) {
-        $this->pictureId = $pictureId;
-    }
-
-    function getTitle() {
-        return $this->title;
-    }
-
-    function getDescription() {
-        return $this->description;
-    }
-
-    function getDateUploaded() {
-        return $this->dateUploaded;
-    }
-
-    function getFileName() {
-        return $this->fileName;
-    }
-
-    function getComments() {
-        return $this->comments;
-    }
-
-    function setComments($comments) {
-        $this->comments = $comments;
-    }
-
-    public function addComment($comment) {
-        
     }
 
 }
 
 Class Comment {
-
-    private $commentId;
-    private $commentText;
-    private $commentAuthor;
-    private $commentDate;
-
-    public function __construct($commentId, $commentText, $commentAuthor, $commentDate) {
-        $this->commentId = $commentId;
-        $this->commentText = $commentText;
-        $this->commentAuthor = $commentAuthor;
-        $this->commentDate = $commentDate;
-    }
     
-    public function getCommentId() {
-        return $this->commentId;
-    }
-
-    public function setCommentId($commentId) {
-        $this->commentId = $commentId;
-    }
-    
-    public function getCommentText() {
-        return $this->commentText;
-    }
-
-    public function getCommentAuthor() {
-        return $this->commentAuthor;
-    }
-
-    public function getCommentDate() {
-        return $this->commentDate;
-    }
-    
-    public function CompareCommentByDate($commnet1, $comment2){}
-
-
-
-
-
 }
 
 ?>
