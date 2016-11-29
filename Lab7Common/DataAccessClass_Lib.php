@@ -71,10 +71,10 @@ class DataAccessObject {
     
     public function saveAlbum ($user, $album)
     {
-        $dateUpdated = $album->getDateUpdated()->format('Y-m-d G:i:s');
+        $dateUpdated = $album->getDate_Updated();  //->format('Y-m-d G:i:s');
         $sql = "INSERT INTO Album (Title, Description, Owner_Id, Date_Updated, Accessibility_Code) VALUES( :title, :description, :userId, :dateUpdated, :accessibilityCode)";
         $stmt = $this->pdo->prepare($sql);
-        $stmt->execute(['title'=>$album->getTitle(), 'description'=>$album->getDescription(), 'userId' => $album->getUserId(), 'dateUpdated' => $album->dateUpdated(),'accessibility_code'=>$album->getAccessibillityCode(), 'owner_id'=>$album->getOwnerId()]);
+        $stmt->execute(['title'=>$album->getTitle(), 'description'=>$album->getDescription(), 'userId' => $user->getUserId(), 'dateUpdated' => $dateUpdated,'accessibility_code'=>$album->getAccessibilityCode(), 'owner_id'=>$album->getOwnerId()]);
         
         $albumId = $this->pdo->lastInsertId();
         $album->setAlbumId($albumId);
