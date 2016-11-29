@@ -31,6 +31,7 @@ class DataAccessObject {
     
     public function getAlbumForUser($user){}
     
+<<<<<<< HEAD
     public function saveAlbum($title,$description, $accessibility_code, $owner_id){
         
         $sql = "INSERT INTO Album(Title, Description, Accessibility_Code, Owner_Id) Values(:title, :description, :accessibility_code, :owner_id)";
@@ -44,6 +45,12 @@ class DataAccessObject {
     
     public function getUserById($userId){}
 
+=======
+public function saveFriendRequest($user, $request) {
+    
+}
+    
+>>>>>>> refs/remotes/origin/Yulii
     public function saveUser($userId, $name, $phone, $password){
         $sql = "INSERT INTO User VALUES( :userId, :name, :phone, :password)";
         $stmt = $this->pdo->prepare($sql);
@@ -51,6 +58,7 @@ class DataAccessObject {
         
     }
     
+<<<<<<< HEAD
     public function saveComment($picture,$comment){}
     
     public function getCOmmentsForPicture($picture){}
@@ -73,6 +81,8 @@ class DataAccessObject {
     
     
     
+=======
+>>>>>>> refs/remotes/origin/Yulii
      public function userExists($userId) {
         $sql = "SELECT COUNT(UserId) AS num FROM User WHERE UserId = :userId";
         $stmt = $this->pdo->prepare($sql);
@@ -106,6 +116,19 @@ class DataAccessObject {
         return $user;
     }
     
+<<<<<<< HEAD
+=======
+    
+    public function saveAlbum($title,$description, $accessibility_code, $owner_id){
+        
+        $sql = "INSERT INTO Album(Title, Description, Accessibility_Code, Owner_Id) Values(:title, :description, :accessibility_code, :owner_id)";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute(['title'=>$title, 'description'=>$description, 'accessibility_code'=>$accessibility_code,
+            'owner_id'=>$owner_id]);
+        
+    }
+    
+>>>>>>> refs/remotes/origin/Yulii
     public function getAllAlbums() {
         $albums = array();
         $sql='SELECT Title, Description, Date_Updated, Accessibility_Code, Owner_Id FROM Album';
