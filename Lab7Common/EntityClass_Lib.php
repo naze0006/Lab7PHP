@@ -134,10 +134,18 @@ class Album {
     function getAlbumId() {
         return $this->albumId;
     }
+    function setAlbumId($albumId) {
+        $this->albumId = $albumId;
+    }
 
+    
     function getDescription() {
         return $this->description;
     }
+     function setDescription($description) {
+        $this->description = $description;
+    }
+
 
     function getPictures() {
         return $this->pictures;
@@ -146,7 +154,11 @@ class Album {
     function getDate_updated() {
         return $this->date_updated;
     }
+    function setDate_updated($date_updated) {
+        $this->date_updated = $date_updated;
+    }
 
+    
     function getOwner_id() {
         return $this->owner_id;
     }
@@ -155,10 +167,7 @@ class Album {
         return $this->accessibility_code;
     }
 
-    function setDescription($description) {
-        $this->description = $description;
-    }
-
+   
     //public function _toString();
 }
 
