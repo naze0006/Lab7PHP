@@ -2,7 +2,7 @@
 
 define("INI_FILE_PATH", "Lab7.ini");
 
-<<<<<<< HEAD
+
 define(ORIGINAL_PICTURES_DIR, "Pictures/OriginalPictures");
 define(ALBUM_PICTURES_DIR, "Pictures/AlbumPictures");
 define(ALBUM_THUMBNAILS_DIR, "Pictures/AlbumThumbnails");
@@ -15,6 +15,5 @@ define(THUMB_MAX_HEIGHT, 100);
 
 $supportedImageTypes = array(IMAGETYPE_GIF,IMAGETYPE_JPEG,IMAGETYPE_PNG);
 date_default_timezone_set("America/Toronto");
-=======
->>>>>>> refs/remotes/origin/Yulii
+
 ?>
