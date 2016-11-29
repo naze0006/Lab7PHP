@@ -114,15 +114,15 @@ class Album {
     private $title;
     private $description;
     private $date_updated;
-    private $owner_id;
+ 
     private $accessibility_code;
     private $pictures;
 
-    function __construct($title, $description, $date_updated, $owner_id, $accessibility_code) {
+    function __construct($title, $description, $date_updated, $accessibility_code, $albumI=null) {
         $this->title = $title;
         $this->description = $description;
         $this->date_updated = $date_updated;
-        $this->owner_id = $owner_id;
+       
         $this->accessibility_code = $accessibility_code;
         $this->pictures = array();
     }
