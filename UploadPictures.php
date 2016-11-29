@@ -61,3 +61,77 @@
         }
         
         ?>
+
+        <div class="container-fluid">
+            <div class="row vertical-margin">
+                <div class="col-md-12">
+                    <h2 class="text-left">Upload Pictures</h2>
+                </div>          
+            </div>
+            <div class="row vertical-margin">
+                <div class="col-md-12">
+                    <p>Accept picture types: JPG(JPEG), GIF and PNG</p>
+                    <p>You can upload multiple pictures at a time by pressing the shift key while selecting pictures</p>
+                    <p>When uploading multiple pictures, the title and description fields will be applied to all pictures.</p>
+                </div>          
+            </div>
+
+            <br/>
+            <form class="form-horizontal" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="sltAlbum">Upload to Album:</label>
+                    <div class="row vertical-margin">
+                    <div class="col-md-3 text-center">
+                        
+                        <!-- -------------- Needs to be changed ---------------- -->
+                        
+                        <select name="sltAlbum" class="form-control" onchange="onSemesterChanged()"> 
+
+                            <?php
+                            foreach ($albums as $album) {
+                                $albumTitle = $album->getTitle();
+                            }
+                            ?>
+                        </select>
+                        <input type="hidden" id="semesterChangedFlag" name="semesterChangedFlag" value="" />
+                    </div>
+                </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="txtUpload">File to Upload:</label>
+                    <div class="col-sm-4">
+                        <input type="file" name="txtUpload" size="40"/>
+                        <span style="color:red"><?php print $txtUploadValidateError ?></span>
+                    </div>
+                </div>
+                <div class="form-group" >
+                    <label class="control-label col-sm-2" for="title">Title: </label>
+                    <div class="col-sm-4">
+                        <input class="form-control col-sm-4" type="text" id="title" name="phone" 
+                               value="<?php print $title ?>"/><span style="color:red"><?php print $titleValidateError ?></span>
+                    </div>
+
+                </div>
+                <div class="form-group" >
+                    <label class="control-label col-sm-2" for="description" >Description: </label>  
+                    <div class="col-sm-4">
+                        <textarea class="form-control" rows="5" id="description"></textarea><span style="color:red"><?php print $descriptionValidateError ?></span>  
+                    </div> 
+
+                </div>
+
+                <br/>
+
+                <div class="col-sm-6">
+                    <input class="btn btn-primary" type = "submit" name="btnUpload" value = "Upload" class="button" />
+                    <button class="btn btn-primary" type="reset" name="btnClear" value="Reset" class="button">Clear</button>
+                </div>
+            </form>
+
+        </div>
+
+        
+    </body>
+</html>
+
+        
