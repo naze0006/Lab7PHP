@@ -21,7 +21,8 @@
         if(!isset($_SESSION["user"]))
         {
             $_SESSION["rurl"] = "UploadPictures.php";
-            header("Location:Login.php");
+//            header("Location:Login.php");
+    header("Location: Login.php");
             exit();
         }
         
